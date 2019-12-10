@@ -55,6 +55,7 @@ class UsersControllerTest extends TestCase
         $this->assertResponseStatus(200);
         $this->assertTrue($response['success']);
         $this->assertNotEmpty($response['data']['id']);
+        $this->assertNotEmpty($response['data']['jwt']);
         $this->assertEquals($this->email, $response['data']['email']);
     }
 
