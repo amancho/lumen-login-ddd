@@ -1,8 +1,8 @@
 <?php
 
-use Domain\Entities\User;
+use App\Domain\Entities\User;
 
-class EntityUserTest extends TestCase
+class UserEntityTest extends TestCase
 {
     /**
      * A basic test example.

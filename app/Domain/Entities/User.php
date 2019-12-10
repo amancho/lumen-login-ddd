@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Entities;
+namespace App\Domain\Entities;
 
 /**
  * User

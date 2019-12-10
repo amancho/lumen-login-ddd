@@ -1,3 +1,20 @@
+# Lumen DDD Login
+User validation without DB
+
+## Application Architecture
+- **app** ** - Framework specific functionality, validator classes, service providers base models, etc
+- **app/Domain** - All of my business logic, such as entities, repository interfaces, and domain services. 
+- **app/Infrastructure** - All of the persistence logic. That includes repository implementations, cache decorators, etc
+
+## Tests
+
+### Unit tests for App\Domain\Entities\User class
+php {{APP_DIR}}/vendor/phpunit/phpunit/phpunit --no-configuration {{APP_DIR}}/tests/EntityUserTest.php 
+
+### Unit tests for App\Http\Controllers\UsersController
+php {{APP_DIR}}/vendor/phpunit/phpunit/phpunit --no-configuration {{APP_DIR}}/tests/UsersControllerTest.php 
+
+
 # Lumen PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
