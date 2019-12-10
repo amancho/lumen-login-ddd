@@ -38,7 +38,7 @@ class UserRepositoryTest extends TestCase
     }
 
     /** @test */
-    public function user_login_fails(): void
+    public function user_login_password_fails(): void
     {
         $email = new UserEmail('amancho@gmail.com');
         $password = new UserPassword('666');
@@ -48,4 +48,14 @@ class UserRepositoryTest extends TestCase
         $this->assertEmpty($userFromRepository);
     }
 
+    /** @test */
+    public function user_login_email_fails(): void
+    {
+        $email = new UserEmail(uniqid());
+        $password = new UserPassword(uniqid());
+
+        $userFromRepository = $this->repository()->login($email, $password);
+
+        $this->assertEmpty($userFromRepository);
+    }
 }

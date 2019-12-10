@@ -47,4 +47,13 @@ final class User
     {
         return $this->password;
     }
+
+    public function checkPassword(UserPassword $password): bool
+    {
+        if($this->password->value() == $password->value()) {
+            return true;
+        }
+
+        return false;
+    }
 }

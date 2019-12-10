@@ -15,9 +15,9 @@ class UsersController extends Controller
     public function __construct()
     {
        $userDB = new UserDB();
-       //$userLogin = new UserLogin($userDB);
-       //$userLoginRequestValidation = new UserLoginRequestValidation();
-       //$this->singInService = new SingInService($userLogin, $userLoginRequestValidation);
+       $userLogin = new UserLogin($userDB);
+       $userLoginRequestValidation = new UserLoginRequestValidation();
+       $this->singInService = new SingInService($userLogin, $userLoginRequestValidation);
     }
 
     /**
@@ -29,13 +29,6 @@ class UsersController extends Controller
     public function authenticate(Request $request)
     {
         $post = $request->all();
-        //$this->singInService->login($post);
-        $result = 'Validation OK';
-
-        return response()->json([
-            'status' => 'success',
-            'result' => $result
-            ]
-        );
+        return $this->singInService->login($post);
     }
 }

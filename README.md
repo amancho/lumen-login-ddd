@@ -1,15 +1,28 @@
 # Lumen DDD Login
 User validation without DB
 
+## Installation
+composer install
+
 ## Application Architecture
-- **app** ** - Framework specific functionality, validator classes, service providers base models, etc
-- **app\User\Domain** - All of my business logic for Users, such as entities, repository interfaces, and domain services. 
-- **app/Infrastructure** - All of the persistence logic. That includes repository implementations, cache decorators, etc
+- **app**  - Framework specific functionality, validator classes, service providers base models, etc
+- **app\Http\Controllers\UsersController** Authenticate controller
+- **app\Users** - All of my business logic for Users, such as entities, repository interfaces, and domain services.
+
+## Routes path
+- **app\routes\api.php**
 
 ## Tests
 
-### Unit tests for App\Users\Domain\User class
+### Allowed credentials
+- ['email' => 'amancho@gmail.com', 'password' => '123456']
+- ['email' => 'jdomenech@drivania.com', 'password' => '123456']
+- ['email' => 'fran@drivania.com', 'password' => '123456']
+
+        
+### Unit tests for App\Users\Domain
 php {{APP_DIR}}/vendor/phpunit/phpunit/phpunit --no-configuration {{APP_DIR}}/app/Users/Domain/Tests/UserEntityTest.php 
+php {{APP_DIR}}/vendor/phpunit/phpunit/phpunit --no-configuration {{APP_DIR}}/app/Users/Domain/Tests/UserRepositoryTest.php 
 
 ### Unit tests for App\Http\Controllers\UsersController
 php {{APP_DIR}}/vendor/phpunit/phpunit/phpunit --no-configuration {{APP_DIR}}/tests/UsersControllerTest.php 

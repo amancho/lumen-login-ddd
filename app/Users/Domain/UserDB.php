@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Users\Domain;
+
 /**
  * Class UserDB
  * Works like a DB Repository
@@ -19,31 +20,42 @@ class UserDB implements UserRepository
         $this->generateFakeUsers();
     }
 
-    public function save(User $user): void
+    /**
+     * Check credentials and returns user instance
+     *
+     * @param UserEmail $userEmail
+     * @param UserPassword $userPassword
+     * @return User|bool
+     */
+    public function login(UserEmail $userEmail, UserPassword $userPassword)
     {
+        $userDB = $this->searchByEmail($userEmail);
 
-    }
-
-    public function login(UserEmail $userEmail, UserPassword $userPassword ): User
-    {
-        $result = null;
-
-        if (array_key_exists($userEmail->value(), $this->users)){
-            $user = $this->users[$userEmail->value()];
-            $result = new User(
-                new UserId($user['id']),
-                new UserName($user['name']),
-                new UserEmail($user['email']),
-                new UserPassword($user['password'])
-            );
+        if ($userDB && $userDB->checkPassword($userPassword)){
+            return $userDB;
         }
 
-        return $result;
+        return false;
     }
 
-    public function search(UserId $id): User
+    private function getUser($data)
     {
+        return new User(
+            new UserId($data['id']),
+            new UserName($data['name']),
+            new UserEmail($data['email']),
+            new UserPassword($data['password'])
+        );
+    }
 
+    private function searchByEmail(UserEmail $userEmail)
+    {
+        if (array_key_exists($userEmail->value(), $this->users)){
+            $userDB = $this->users[$userEmail->value()];
+            return $this->getUser($userDB);
+        }
+
+        return null;
     }
 
     private function generateFakeUsers()
