@@ -2,8 +2,9 @@
 User validation without DB
 
 ## Installation
-git clone https://github.com/amancho/lumen-login-ddd.git
-composer install
+- cd /path/to/your/repo
+- git clone https://github.com/amancho/lumen-login-ddd.git
+- composer install
 
 ## Application Architecture
 - **app**  - Framework specific functionality, validator classes, service providers base models, etc
