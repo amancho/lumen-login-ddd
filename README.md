@@ -8,8 +8,8 @@ User validation without DB
 
 ## Tests
 
-### Unit tests for App\Domain\Entities\User class
-php {{APP_DIR}}/vendor/phpunit/phpunit/phpunit --no-configuration {{APP_DIR}}/tests/EntityUserTest.php 
+### Unit tests for App\Users\Domain\User class
+php {{APP_DIR}}/vendor/phpunit/phpunit/phpunit --no-configuration {{APP_DIR}}/app/Users/Domain/Tests/UserEntityTest.php 
 
 ### Unit tests for App\Http\Controllers\UsersController
 php {{APP_DIR}}/vendor/phpunit/phpunit/phpunit --no-configuration {{APP_DIR}}/tests/UsersControllerTest.php 

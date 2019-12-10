@@ -5,16 +5,12 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
+    private $singInService;
 
+    public function __construct(SingInService $singInService)
+    {
+        $this->singInService = $singInService;
+    }
 
     /**
      * Validate username and password.
@@ -24,8 +20,8 @@ class UsersController extends Controller
      */
     public function authenticate(Request $request)
     {
-        $userName = $request->input('username');
-        $userPassword = $request->input('password');
+        $post = $request->all();
+        $this->singInService->login($post);
         $result = 'Validation OK';
 
         return response()->json([
