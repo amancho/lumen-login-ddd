@@ -2,27 +2,46 @@
 
 namespace App\Users\Application\Login;
 
-use App\Users\Domain\User;
+use App\Users\Contracts\UserLoginServiceContract;
 use App\Users\Domain\UserEmail;
 use App\Users\Domain\UserPassword;
-use App\Users\Domain\UserRepository;
+use App\Users\Domain\UserDB;
 
-final class UserLogin
+class UserLogin implements UserLoginServiceContract
 {
     private $repository;
 
-    public function __construct(UserRepository $repository)
+    public function __construct(UserDB $repository)
     {
         $this->repository = $repository;
     }
 
-    public function __invoke(UserEmail $userEmail, UserPassword $userPassword): User
+    /**
+     * Check credentials userEmail + Password on the repository
+     *
+     * @param UserEmail $userEmail
+     * @param UserPassword $userPassword
+     * @return array
+     */
+    public function execute(UserEmail $userEmail, UserPassword $userPassword): array
     {
         $user = $this->repository->login($userEmail, $userPassword);
-        if (null === $user) {
-            throw new StudentNotExist($id);
+
+        if (empty($user)) {
+            return [
+                'success' => false,
+                'data' => [],
+                'errors' => 'Invalid credentials'
+            ];
         }
 
-        return $user;
+        return [
+            'success' => true,
+            'data' => [
+                'id' => $user->id()->value(),
+                'email' => $user->email()->value(),
+                'name' => $user->name()->value()
+            ]
+        ];
     }
 }
