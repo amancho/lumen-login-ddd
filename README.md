@@ -3,7 +3,7 @@ User validation without DB
 
 ## Application Architecture
 - **app** ** - Framework specific functionality, validator classes, service providers base models, etc
-- **app/Domain** - All of my business logic, such as entities, repository interfaces, and domain services. 
+- **app\User\Domain** - All of my business logic for Users, such as entities, repository interfaces, and domain services. 
 - **app/Infrastructure** - All of the persistence logic. That includes repository implementations, cache decorators, etc
 
 ## Tests
