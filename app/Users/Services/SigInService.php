@@ -2,9 +2,8 @@
 
 namespace App\Users\Services;
 
-
 use App\Users\Application\Login\UserLoginRequestValidation;
-use Domain\Contracts\Services\UserLoginServiceContract;
+use App\Users\Contracts\UserLoginServiceContract;
 
 class SingInService
 {

@@ -27,7 +27,7 @@ class UserEntityTest extends TestCase
         $this->assertInstanceOf(User::class, $user);
         $this->assertEquals($dataTest['name'], $user->name());
         $this->assertEquals($dataTest['email'], $user->email());
-        $this->assertEquals($dataTest['password'], $user->password());
+        $this->assertEquals(md5($dataTest['password']), $user->password());
     }
 
     /**
@@ -38,7 +38,7 @@ class UserEntityTest extends TestCase
         return [
             'name' => 'Test' . time(),
             'email' => time() . '@domain.com',
-            'password' => md5('pwd' . time()),
+            'password' => 'pwd' . time(),
         ];
     }
 

@@ -1,25 +1,51 @@
 <?php
 
 use App\Users\Domain\User;
+use App\Users\Domain\UserDB;
 use App\Users\Domain\UserEmail;
 use App\Users\Domain\UserId;
 use App\Users\Domain\UserName;
 use App\Users\Domain\UserPassword;
-use App\Users\Domain\UserRepository;
 
 class UserRepositoryTest extends TestCase
 {
+    /**
+     * @var UserDB
+     */
     private $repository;
+
 
     protected function repository()
     {
-        return $this->repository = $this->repository ?: $this->mock(UserRepository::class);
+        if (empty($this->repository)) {
+            $this->repository = new UserDB();
+        }
+
+        return $this->repository;
     }
 
     /** @test */
     public function user_login_works(): void
     {
+        $email = new UserEmail('amancho@gmail.com');
+        $password = new UserPassword('123456');
 
+        $userFromRepository = $this->repository()->login($email, $password);
+
+        $this->assertInstanceOf(User::class, $userFromRepository);
+        $this->assertEquals($email->value(), $userFromRepository->email());
+        $this->assertEquals($password->value(), $userFromRepository->password());
+    }
+
+    /** @test */
+    public function user_login_fails(): void
+    {
+        $email = new UserEmail('amancho@gmail.com');
+        $password = new UserPassword('666');
+
+        $userFromRepository = $this->repository()->login($email, $password);
+
+        $this->assertEmpty($userFromRepository);
     }
 
 }

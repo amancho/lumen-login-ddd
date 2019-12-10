@@ -8,7 +8,7 @@ class UserPassword
 
     public function __construct(string $value)
     {
-        $this->value = $value;
+        $this->value = md5($value);
     }
 
     public function value(): string

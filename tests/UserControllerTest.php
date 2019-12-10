@@ -11,7 +11,10 @@ class UsersControllerTest extends TestCase
     {
         $this->post('/login');
 
-        $this->json('POST', '/login')->assertResponseStatus(200);
+        $params = ['username' => 'aaa', 'password' => 'aaa'];
+        $response = $this->json('POST', '/login', $params)->response;
+
+        $this->assertResponseStatus(200);
     }
 
     /**
@@ -22,6 +25,7 @@ class UsersControllerTest extends TestCase
     public function testUserLoginRouteFails()
     {
         $wrongUrl = '/test' . uniqid();
-        $this->json('POST', $wrongUrl)->assertResponseStatus(404);
+        $this->json('POST', $wrongUrl);
+        $this->assertResponseStatus(404);
     }
 }

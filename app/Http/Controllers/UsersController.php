@@ -1,15 +1,23 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Users\Application\Login\UserLogin;
+use App\Users\Application\Login\UserLoginRequestValidation;
+use App\Users\Domain\UserDB;
+use App\Users\Services\SingInService;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
     private $singInService;
 
-    public function __construct(SingInService $singInService)
+    public function __construct()
     {
-        $this->singInService = $singInService;
+       $userDB = new UserDB();
+       //$userLogin = new UserLogin($userDB);
+       //$userLoginRequestValidation = new UserLoginRequestValidation();
+       //$this->singInService = new SingInService($userLogin, $userLoginRequestValidation);
     }
 
     /**
@@ -21,7 +29,7 @@ class UsersController extends Controller
     public function authenticate(Request $request)
     {
         $post = $request->all();
-        $this->singInService->login($post);
+        //$this->singInService->login($post);
         $result = 'Validation OK';
 
         return response()->json([
