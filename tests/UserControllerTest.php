@@ -12,7 +12,7 @@ class UsersControllerTest extends TestCase
      *
      * @return void
      */
-    public function testUserLoginEmailFails()
+    public function test_user_login_email_fails()
     {
         $this->email = null;
         $this->password = '123456';
@@ -29,7 +29,7 @@ class UsersControllerTest extends TestCase
      *
      * @return void
      */
-    public function testUserLoginPasswordFails()
+    public function test_user_login_password_fails()
     {
         $this->email = 'amancho@gmail.com';
         $this->password = null;
@@ -46,7 +46,7 @@ class UsersControllerTest extends TestCase
      *
      * @return void
      */
-    public function testUserLoginWorks()
+    public function test_user_login_works()
     {
         $this->email = 'amancho@gmail.com';
         $this->password = '123456';
@@ -64,7 +64,7 @@ class UsersControllerTest extends TestCase
      *
      * @return void
      */
-    public function testUserLoginRouteFails()
+    public function test_incorrect_url_fails()
     {
         $wrongUrl = '/test' . uniqid();
         $this->json('POST', $wrongUrl);

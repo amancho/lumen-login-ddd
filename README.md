@@ -2,6 +2,7 @@
 User validation without DB
 
 ## Installation
+git clone https://github.com/amancho/lumen-login-ddd.git
 composer install
 
 ## Application Architecture
@@ -16,15 +17,15 @@ composer install
 
 ### Allowed credentials
 - ['email' => 'amancho@gmail.com', 'password' => '123456']
-- ['email' => 'jdomenech@drivania.com', 'password' => '123456']
-- ['email' => 'fran@drivania.com', 'password' => '123456']
+- ['email' => 'jdomenech@driv****.com', 'password' => '123456']
+- ['email' => 'fran@driv****.com', 'password' => '123456']
 
         
 ### Unit tests for App\Users\Domain
-php {{APP_DIR}}/vendor/phpunit/phpunit/phpunit --no-configuration {{APP_DIR}}/app/Users/Domain/Tests/UserEntityTest.php 
-php {{APP_DIR}}/vendor/phpunit/phpunit/phpunit --no-configuration {{APP_DIR}}/app/Users/Domain/Tests/UserRepositoryTest.php 
+- php {{APP_DIR}}/vendor/phpunit/phpunit/phpunit --no-configuration {{APP_DIR}}/app/Users/Domain/Tests/UserEntityTest.php 
+- php {{APP_DIR}}/vendor/phpunit/phpunit/phpunit --no-configuration {{APP_DIR}}/app/Users/Domain/Tests/UserRepositoryTest.php 
 
-### Unit tests for App\Http\Controllers\UsersController
+### Feature tests for App\Http\Controllers\UsersController
 php {{APP_DIR}}/vendor/phpunit/phpunit/phpunit --no-configuration {{APP_DIR}}/tests/UsersControllerTest.php 
 
 
