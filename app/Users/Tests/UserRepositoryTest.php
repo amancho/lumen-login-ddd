@@ -58,4 +58,38 @@ class UserRepositoryTest extends TestCase
 
         $this->assertEmpty($userFromRepository);
     }
+
+    /** @test */
+    public function user_login_mock_fails(): void
+    {
+        $email = new UserEmail(uniqid());
+        $password = new UserPassword(uniqid());
+
+        $userDBMock =  $this->createMock(UserDB::class);
+        $userDBMock->method('login')->willReturn(false);
+
+        $userFromRepository = $userDBMock->login($email, $password);
+
+        $this->assertFalse($userFromRepository);
+    }
+
+    /** @test */
+    public function user_login_mock_works(): void
+    {
+        $userMock = new User(
+            new UserId(uniqid()),
+            new UserName('Test'),
+            new UserEmail(uniqid()),
+            new UserPassword(uniqid())
+        );
+
+        $userDBMock =  $this->createMock(UserDB::class);
+        $userDBMock->method('login')->willReturn($userMock);
+
+        $userFromRepository = $userDBMock->login($userMock->email(), $userMock->password());
+
+        $this->assertInstanceOf(User::class, $userFromRepository);
+        $this->assertEquals($userMock->email()->value(), $userFromRepository->email());
+        $this->assertEquals($userMock->password()->value(), $userFromRepository->password());
+    }
 }
