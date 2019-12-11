@@ -15,8 +15,8 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->get('test', function () use ($router) {
+$router->get('/test', function () use ($router) {
     return phpinfo();
 });
 
-$router->post('login', 'UsersController@authenticate');
+$router->post('/login', 'UsersController@authenticate');
