@@ -11,13 +11,32 @@ use Illuminate\Http\Request;
 class UsersController extends Controller
 {
     private $singInService;
+    private $userLogin;
 
-    public function __construct()
+    public function __construct(UserLogin $userLogin=null)
     {
-       $userDB = new UserDB();
-       $userLogin = new UserLogin($userDB);
-       $userLoginRequestValidation = new UserLoginRequestValidation();
-       $this->singInService = new SingInService($userLogin, $userLoginRequestValidation);
+        $this->setSingInService($userLogin);
+    }
+
+    private function setSingInService($userLogin)
+    {
+        $this->setUserLogin($userLogin);
+
+        if (!empty($this->userLogin)) {
+            $userLoginRequestValidation = new UserLoginRequestValidation();
+            $this->singInService = new SingInService($userLogin, $userLoginRequestValidation);
+        }
+    }
+
+    private function setUserLogin($userLogin)
+    {
+        if (empty($this->userLogin)) {
+            $userDB = new UserDB();
+            $this->userLogin = new UserLogin($userDB);
+        }
+        else{
+            $this->userLogin = $userLogin;
+        }
     }
 
     /**

@@ -12,5 +12,4 @@ interface UserLoginServiceContract
 {
 
     public function execute(UserEmail $userEmail, UserPassword $userPassword):? array;
-
 }

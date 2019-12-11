@@ -49,6 +49,12 @@ class UserLogin implements UserLoginServiceContract
         ];
     }
 
+    /**
+     * Generate JWT string that expires on 12 hours
+     *
+     * @param UserId $userId
+     * @return string
+     */
     public function getJWT(UserId $userId): string
     {
         $tokenId    = base64_encode(uniqid());    // Json Token Id: an unique identifier for the token
