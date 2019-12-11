@@ -27,8 +27,42 @@ User validation without DB
 - php {{APP_DIR}}/vendor/phpunit/phpunit/phpunit --no-configuration {{APP_DIR}}/app/Users/Domain/Tests/UserRepositoryTest.php 
 
 ### Feature tests for App\Http\Controllers\UsersController
-php {{APP_DIR}}/vendor/phpunit/phpunit/phpunit --no-configuration {{APP_DIR}}/tests/UsersControllerTest.php 
+``php {{APP_DIR}}/vendor/phpunit/phpunit/phpunit --no-configuration {{APP_DIR}}/tests/UsersControllerTest.php`` 
 
+### Application structure
+``
+├── Console
+├── Events
+├── Exceptions
+├── Http
+│   ├── Controllers
+│   │   ├── Controller.php
+│   │   └── UsersController.php
+│   └── Middleware
+├── Jobs
+├── Listeners
+├── Providers
+└── Users
+    ├── Application
+    │   └── Login
+    │       ├── UserLogin.php
+    │       └── UserLoginRequestValidation.php
+    ├── Contracts
+    │   └── UserLoginServiceContract.php
+    ├── Domain
+    │   ├── UserDB.php
+    │   ├── UserEmail.php
+    │   ├── UserId.php
+    │   ├── UserName.php
+    │   ├── UserPassword.php
+    │   ├── User.php
+    │   └── UserRepository.php
+    ├── Services
+    │   └── SingInService.php
+    └── Tests
+        ├── UserEntityTest.php
+        └── UserRepositoryTest.php
+``
 
 # Lumen PHP Framework
 
