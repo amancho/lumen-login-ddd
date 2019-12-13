@@ -13,7 +13,7 @@ class UsersController extends Controller
     private $singInService;
     private $userLogin;
 
-    public function __construct(UserLogin $userLogin=null)
+    public function __construct(UserLogin $userLogin = null)
     {
         $this->setSingInService($userLogin);
     }
@@ -33,8 +33,7 @@ class UsersController extends Controller
         if (empty($this->userLogin)) {
             $userDB = new UserDB();
             $this->userLogin = new UserLogin($userDB);
-        }
-        else{
+        } else {
             $this->userLogin = $userLogin;
         }
     }
