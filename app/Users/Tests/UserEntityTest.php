@@ -83,5 +83,4 @@ class UserEntityTest extends TestCase
             'password' => 'pwd' . time(),
         ];
     }
-
 }

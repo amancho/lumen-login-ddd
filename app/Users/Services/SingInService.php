@@ -24,7 +24,7 @@ class SingInService
 
     public function login($post)
     {
-        try{
+        try {
             $this->requestValidation->validateLogin($post);
 
             $this->userEmail = new UserEmail($post['email']);
@@ -33,8 +33,7 @@ class SingInService
             $result = $this->singInDomainService->execute($this->userEmail, $this->userPassword);
 
             return response()->json($result) ;
-        }
-        catch(\Exception $ex){
+        } catch (\Exception $ex) {
             return response()->json([
                     'success' => false,
                     'errors' => $ex->getMessage(),
