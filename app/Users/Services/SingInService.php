@@ -34,11 +34,13 @@ class SingInService
 
             return response()->json($result) ;
         } catch (\Exception $ex) {
-            return response()->json([
+            return response()->json(
+                [
                     'success' => false,
                     'errors' => $ex->getMessage(),
                 ],
-                500) ;
+                500
+            );
         }
     }
 }
