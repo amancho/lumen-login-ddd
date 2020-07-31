@@ -18,8 +18,6 @@ User validation without DB
 
 ### Allowed credentials
 - ['email' => 'amancho@gmail.com', 'password' => '123456']
-- ['email' => 'jdomenech@driv****.com', 'password' => '123456']
-- ['email' => 'fran@driv****.com', 'password' => '123456']
 
         
 ### Unit tests for App\Users\Domain
